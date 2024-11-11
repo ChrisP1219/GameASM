@@ -10,4 +10,6 @@ gameOverMsg BYTE "Game Over! Starting a new round...", 0
 winMsg BYTE "Next Round", 0
 scoreMsg BYTE "Your current score is: ", 0
 levelMsg BYTE "Level: ", 0
-
+score DWORD 0; Player score
+level DWORD 1; Current level
+numColors DWORD 3; Intital amt of colors
