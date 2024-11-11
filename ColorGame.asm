@@ -12,4 +12,14 @@ scoreMsg BYTE "Your current score is: ", 0
 levelMsg BYTE "Level: ", 0
 score DWORD 0; Player score
 level DWORD 1; Current level
-numColors DWORD 3; Intital amt of colors
+numColors DWORD 3 ;Intital amt of colors
+
+.code
+main PROC
+call Clrscr ;Clear screen
+
+;Initialize values for run
+GameStart: 
+mov numColors, 3 ;Start with 3 colors
+mov score, 0 ;reset score
+mov level, 1 ;reset level
