@@ -13,6 +13,7 @@ levelMsg BYTE "Level: ", 0
 score DWORD 0; Player score
 level DWORD 1; Current level
 numColors DWORD 3 ;Intital amt of colors
+inputBuffer BYTE 5 DUP (0) ;user input buff
 
 .code
 main PROC
@@ -23,3 +24,36 @@ GameStart:
 mov numColors, 3 ;Start with 3 colors
 mov score, 0 ;reset score
 mov level, 1 ;reset level
+
+NewRound :
+; Randomize the color sequence
+call RandomizeColors
+
+RandomizeColors PROC
+mov ecx, numColors ;num of colors in sequence
+mov esi, OFFSET sequence
+
+RandomLoop :
+call RandomRange ;gen rando num
+movzx eax, al
+and eax, 7; restrict 0-7
+mov[esi], al ;store rando color index
+inc esi
+loop RandomLoop
+ret
+RandomizeColors ENDP
+
+;gen rando num
+RandomRange PROC
+mov eax, numColors
+call Randomize
+ret
+RandomRange ENDP
+
+
+; Show the color sequence
+call DisplayColors
+
+; Get user input
+call GetUserInput
+
